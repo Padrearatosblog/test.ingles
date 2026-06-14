@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Test Trainer | test.ingles</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" type="button" data-view="home" aria-label="Volver al inicio">
+        <span class="brand-mark">ET</span>
+        <span>
+          <strong>English Test Trainer</strong>
+          <small>Stock and Warehousing</small>
+        </span>
+      </button>
+
+      <nav class="top-actions" aria-label="Navegación principal">
+        <button class="nav-button" type="button" data-view="vocabulary">Vocabulario</button>
+        <button class="nav-button" type="button" data-view="test">Test</button>
+        <button class="nav-button" type="button" data-view="errors">Errores</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="view view-active" id="home-view" aria-labelledby="home-title">
+        <div class="hero">
+          <div class="hero-content">
+            <span class="eyebrow">Plataforma de práctica</span>
+            <h1 id="home-title">English Test Trainer</h1>
+            <p>Practica vocabulario de logística, almacén y entrevistas laborales con explicaciones en español.</p>
+            <div class="hero-actions">
+              <button class="primary-button" type="button" data-view="test">Empezar práctica</button>
+              <button class="secondary-button" type="button" data-view="vocabulary">Ver vocabulario</button>
+              <button class="ghost-button" type="button" data-view="errors">Repasar errores</button>
+            </div>
+          </div>
+
+          <div class="hero-panel" aria-label="Resumen de la práctica">
+            <div>
+              <span class="panel-number" id="total-questions">30</span>
+              <span class="panel-label">preguntas</span>
+            </div>
+            <div>
+              <span class="panel-number" id="saved-errors">0</span>
+              <span class="panel-label">errores guardados</span>
+            </div>
+            <div>
+              <span class="panel-number">ES</span>
+              <span class="panel-label">explicaciones claras</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="vocabulary-view" aria-labelledby="vocabulary-title">
+        <div class="section-heading">
+          <span class="eyebrow">Antes del test</span>
+          <h2 id="vocabulary-title">Vocabulario clave</h2>
+          <p>Repasa las palabras más importantes de almacén, transporte y venta antes de contestar.</p>
+        </div>
+        <div class="vocabulary-grid" id="vocabulary-list"></div>
+      </section>
+
+      <section class="view" id="test-view" aria-labelledby="test-title">
+        <div class="test-layout">
+          <div class="test-header">
+            <div>
+              <span class="eyebrow" id="question-section">Test</span>
+              <h2 id="test-title">Pregunta</h2>
+            </div>
+            <span class="progress-text" id="progress-text">Pregunta 1 de 30</span>
+          </div>
+
+          <div class="progress-bar" aria-hidden="true">
+            <span id="progress-fill"></span>
+          </div>
+
+          <article class="question-card" id="question-card"></article>
+        </div>
+      </section>
+
+      <section class="view" id="errors-view" aria-labelledby="errors-title">
+        <div class="section-heading">
+          <span class="eyebrow">Repaso inteligente</span>
+          <h2 id="errors-title">Repasar errores</h2>
+          <p>Practica solo las preguntas falladas. Cuando aciertes una en este modo, se eliminará de tu lista.</p>
+        </div>
+        <div id="errors-content"></div>
+      </section>
+
+      <section class="view" id="results-view" aria-labelledby="results-title">
+        <div class="results-card" id="results-card"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
