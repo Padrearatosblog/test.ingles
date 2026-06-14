@@ -1,4 +1,4 @@
-const vocabulary = [
+const fallbackVocabulary = [
   { word: "carrier", meaning: "transportista", explanation: "Empresa o persona que transporta la mercancía.", example: "The carrier will deliver the pallets tomorrow." },
   { word: "shipper", meaning: "remitente", explanation: "Persona o empresa que envía la mercancía.", example: "The shipper prepared the export documents." },
   { word: "freight", meaning: "mercancía / carga", explanation: "Productos transportados por carretera, barco, avión o tren.", example: "The freight arrived at the warehouse this morning." },
@@ -31,7 +31,7 @@ const vocabulary = [
   { word: "paperwork", meaning: "documentación", explanation: "Documentos necesarios para compras, ventas o envíos.", example: "The paperwork must be complete before dispatch." }
 ];
 
-const questions = [
+const fallbackQuestions = [
   {
     id: 1,
     section: "Vocabulary",
@@ -398,6 +398,19 @@ const questions = [
   }
 ];
 
+const hasExternalQuestionBank = Boolean(window.EXAM_QUESTION_BANK);
+const questionBank = window.EXAM_QUESTION_BANK || {};
+const vocabulary = hasExternalQuestionBank && Array.isArray(questionBank.vocabulary)
+  ? questionBank.vocabulary
+  : fallbackVocabulary;
+const questions = hasExternalQuestionBank && Array.isArray(questionBank.questions)
+  ? questionBank.questions
+  : fallbackQuestions;
+const bankMeta = questionBank.meta || {
+  source: "fallback",
+  reviewItems: []
+};
+
 const state = {
   mode: "test",
   activeQuestions: questions,
@@ -457,6 +470,20 @@ function renderVocabulary() {
 }
 
 function startTest(mode, customQuestions = questions) {
+  if (!customQuestions.length) {
+    elements.questionSection.textContent = "Revision pendiente";
+    elements.progressText.textContent = "Sin preguntas generadas";
+    elements.progressFill.style.width = "0%";
+    elements.questionCard.innerHTML = `
+      <div class="empty-state">
+        <h3>No hay preguntas listas</h3>
+        <p>El banco generado no contiene preguntas confirmadas. Revisa las imagenes marcadas en el reporte OCR antes de publicar el test.</p>
+        <button class="secondary-button" type="button" data-view="vocabulary">Ver vocabulario</button>
+      </div>
+    `;
+    return;
+  }
+
   state.mode = mode;
   state.activeQuestions = customQuestions;
   state.currentIndex = 0;

@@ -1,0 +1,12 @@
+[
+  {
+    "source": "img/hoja2.jpeg",
+    "section": "Complete the words and phrases",
+    "reason": "Varias palabras con letras omitidas no se leen con fiabilidad suficiente en la imagen."
+  },
+  {
+    "source": "img/hoja4.jpeg",
+    "section": "Functional Language 2",
+    "reason": "Algunas respuestas manuscritas tapan parte del texto. Se han incluido solo las preguntas legibles."
+  }
+]
